@@ -26,4 +26,15 @@ app.post('/', (request, response) => {
   response.status(201).json(newTodo);
 });
 
+app.put('/:id', (req, res) => {
+  var id = req.params.id;
+  console.log(id);
+  if (todos[id - 1]) {
+    todos[id - 1] = req.body;
+    res.status(204).send();
+  } else {
+    res.status(404, 'The todo is not found').send();
+  }
+});
+
 // tutorial https://www.codingame.com/playgrounds/1064/building-a-basic-todo-list-rest-api-in-node-js-with-express/discover-express
