@@ -37,4 +37,15 @@ app.put('/:id', (req, res) => {
   }
 });
 
+app.delete('/:id', (req, res) => {
+  var id = parseInt(req.params.id);
+  if (todos.some(todo => todo.id === id)) {
+    todos = todos.filter(todo => todo.id !== id);
+    res.status(200).send();
+  } else {
+    res.status(404, 'The todo is not found').send();
+  }
+})
+
+// todo ids are not truly unique
 // tutorial https://www.codingame.com/playgrounds/1064/building-a-basic-todo-list-rest-api-in-node-js-with-express/discover-express
